@@ -1,0 +1,2 @@
+let questions = [{"answer":"B","stem":"拉动式生产成为可能的大前提是（     ）。  A、 均衡化生产 B、 按订单生产 C、 预测生产 D、 批量生产 ","options":[],"img":null,"no":1,"type":1},{"answer":"核心制造   服务流程","stem":"任何公司若想展开精益之旅，一个很好的起始点是在其（            ）与（）中可应用之处建立连续的操作流程。 ","options":[],"img":null,"no":2,"type":2},{"answer":"缩短从原材料到产生最终成品（或服务）的消耗时间，有助于促成最佳质量、最低成本，以及最短的送货时间。","stem":"简单描述精益生产的核心要电：连续流。","options":[],"img":null,"no":3,"type":3}]
+module.exports = questions

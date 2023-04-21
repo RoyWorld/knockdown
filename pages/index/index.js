@@ -20,6 +20,16 @@ Page({
       url: '../question/question?type=random'
     })
   },
+  bindBeiTi: function () {
+    wx.navigateTo({
+      url: '../question/question?type=BeiTi'
+    })
+  },
+  bindExam: function () {
+    wx.navigateTo({
+      url: '../question/question?type=Exam'
+    })
+  },
   bindFavorite: function () {
     let favorite_list = wx.getStorageSync('favorite_list')
     if (!favorite_list) {

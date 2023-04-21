@@ -1,15 +1,19 @@
 <view class="container">
-  <view class="title">第{{question.no}}题</view>
+  <view class="title">第{{question.no}}题 {{question.typeName}}</view>
   <view class="question">{{question.stem}}</view>
   <view wx:if="{{question.img}}">
   <image src="{{question.img}}" mode="aspectFit"></image>
   </view>
-  <view class="options">
+  <view wx:if="question.type==1" class="options">
     <view wx:key="option" wx:for="{{question.options}}">
       <button animation="{{wrongid==item.option? animationData:''}}" type="{{correctid==item.option?'primary':''}}" class="option" bindtap='selectAnswer' data-id="{{item.option}}" disabled='{{disable}}'>{{item.option}}. {{item.content}}</button>
     </view>
   </view>
-   <view class="favorate" bindtap="addFavorite">
+  <view class="showanswer">
+    <view wx:if="{{showAnswer}}" id="showanswer" class="answer">答案：{{question.answer}}</view>
+    <button wx:if="{{!showAnswer}}" id="showanswerBtn" class="btn" bindtap='showanswer'>显示答案</button>
+  </view>   
+  <view class="favorate" bindtap="addFavorite">
     <view wx:if="{{favorite}}"><image class="icon" src="../../resource/icon/heart.png"></image></view>
     <view wx:else><image class="icon" src="../../resource/icon/heart_none.png"></image></view>
   </view> 

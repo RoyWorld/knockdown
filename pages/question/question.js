@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    questions: qs.questions
+    questions: qs.questions,
+    // showAnswer: false
   },
 
   /**
@@ -18,7 +19,10 @@ Page({
   onLoad: function (options) {
     const self = this
     const t = options.type
+    
+    //设置当前页面类型
     this.setData({learning_type: t})
+
     // let questions = this.loadQuestions().questions
     let view_list = wx.getStorageSync(t + 'list')
     let favorite_list = wx.getStorageSync('favorite_list')
@@ -93,6 +97,10 @@ shuffle: function (a) {
   }
   return a;
 },
+
+/**
+ * 下一题
+ */
 nextQuestion: function(){
   if(questioncontrol.finishedYet()){
     wx.showModal({
@@ -105,14 +113,33 @@ nextQuestion: function(){
   let favorite = questioncontrol.isFavorite()
   this.setNewQuestion(question, favorite)
 },
+
+
+/**
+ * 上一题
+ */
 previousQuestion: function () {
   let question = questioncontrol.getPreviousQuestion()
   let favorite = questioncontrol.isFavorite()
   this.setNewQuestion(question, favorite)
 },
+
+
+/**
+ * 获取题目
+ */
 setNewQuestion: function(question, favorite){
+  let t = this.data.learning_type
+
+  //背题模式下直接展示答案
+  let showAnswer = false;
+  if (t == 'BeiTi') {
+    showAnswer = true;
+  }
+
   this.setData({
     question: question,
+    showAnswer: showAnswer,
     answer: question.answer,
     favorite: favorite,
     correctid: '',
@@ -121,6 +148,17 @@ setNewQuestion: function(question, favorite){
     pending: false
   })
 },
+
+/**
+ * 显示答案
+ */
+showanswer: function(){
+  this.setData({
+    showAnswer: true
+  })
+},
+
+
 selectAnswer: function(evt){
   self = this
   let selected = evt.currentTarget.dataset.id

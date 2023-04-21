@@ -28,6 +28,15 @@ page{
   margin: 30rpx;
 }
 
+.answer{
+  color: antiquewhite;
+  margin: 40rpx 20rpx;
+}
+
+.showanswer{
+  color: antiquewhite;
+  margin: 40rpx 20rpx;
+}
 
 .icon{
   padding: 26rpx;
