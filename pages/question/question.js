@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // jquery: require('jquery'),
     questions: qs.questions,
     // showAnswer: false
   },
@@ -158,7 +159,10 @@ showanswer: function(){
   })
 },
 
-
+/**
+ * 选择的答案正确后跳转到下一题
+ * @param {*} evt 
+ */
 selectAnswer: function(evt){
   self = this
   let selected = evt.currentTarget.dataset.id
@@ -176,12 +180,55 @@ selectAnswer: function(evt){
   else{
     this.setData({wrongid: selected})
   }
-},  
+}, 
+
+/**
+ * 选择的答案正确后跳转到下一题
+ * @param {*} evt 
+ */
+selectAnswer2: function(evt){
+  let id = evt.currentTarget.dataset.id
+
+  let question = this.data.question;
+  let options = question.options
+  if (question.type == 0) {
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].id == id) {
+        options[i].checked = true;
+      } else {
+        options[i].checked = false;
+      }
+    }
+  } else {
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].id == id) {
+        options[i].checked = !options[i].checked;
+      }
+    }
+  }
+  
+  question.options = options;
+
+  this.setData({
+    question: question
+  }) 
+}, 
+
 addFavorite: function(){
   let isFavorite = questioncontrol.toggleFavorite()
   this.setData({ favorite: isFavorite})
 
 },
+
+isActive: function(array, index) {
+  if(array.indexOf(index)>-1) {
+    // return 'primary';
+    return 'btn-hover';
+  }else {
+    return '';
+  }
+},
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

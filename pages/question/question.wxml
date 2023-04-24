@@ -4,14 +4,22 @@
   <view wx:if="{{question.img}}">
   <image src="{{question.img}}" mode="aspectFit"></image>
   </view>
-  <view wx:if="question.type==1" class="options">
-    <view wx:key="option" wx:for="{{question.options}}">
-      <button animation="{{wrongid==item.option? animationData:''}}" type="{{correctid==item.option?'primary':''}}" class="option" bindtap='selectAnswer' data-id="{{item.option}}" disabled='{{disable}}'>{{item.option}}. {{item.content}}</button>
+  <view>
+    <view wx:if="{{question.type==0 || question.type==1}}" class="options">
+      <!-- 
+      <view wx:key="option" wx:for="{{question.options}}">
+        <button animation="{{wrongid==item.option? animationData:''}}" type="{{correctid==item.option?'primary':''}}" class="option" bindtap='selectAnswer' data-id="{{item.option}}" disabled='{{disable}}'>{{item.option}}. {{item.content}}</button>
+      </view>
+      -->
+      <button wx:for="{{question.options}}" bindtap='selectAnswer2' class="option2 {{item.checked? 'btn-hover':''}}" data-id="{{item.id}}"  type="{{isActive(optionsState,item)}}">{{item.id}}</button>
     </view>
+    <view wx:if="{{question.type==2 || question.type==3}}" class="options">
+      <textarea class="text-area" placeholder-class="weui-input__placeholder" placeholder="输入答案" />
+    </view>      
   </view>
   <view class="showanswer">
     <view wx:if="{{showAnswer}}" id="showanswer" class="answer">答案：{{question.answer}}</view>
-    <button wx:if="{{!showAnswer}}" id="showanswerBtn" class="btn" bindtap='showanswer'>显示答案</button>
+    <button wx:if="{{!showAnswer}}" id="showanswerBtn" class="btn" bindtap='showanswer'>提交</button>
   </view>   
   <view class="favorate" bindtap="addFavorite">
     <view wx:if="{{favorite}}"><image class="icon" src="../../resource/icon/heart.png"></image></view>

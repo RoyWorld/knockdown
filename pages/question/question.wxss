@@ -28,6 +28,30 @@ page{
   margin: 30rpx;
 }
 
+.option2 {
+  min-width: 50rpx;
+  border-radius: 30rpx;
+  border: solid white 8rpx;
+  margin: 30rpx;
+  display: inline-block;
+}
+
+.btn-hover{
+  background-color: #2292DD;
+} 
+
+.text-area {
+  cursor: auto;
+  width: 300px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 3.3em;
+  background-color: white;
+  border-radius: 15rpx;
+  margin: 30rpx;
+}
+
 .answer{
   color: antiquewhite;
   margin: 40rpx 20rpx;
